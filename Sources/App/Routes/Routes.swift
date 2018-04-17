@@ -21,5 +21,11 @@ extension Droplet {
         get("description") { req in return req.description }
         
         try resource("posts", PostController.self)
+        
+        get("beers", Int.parameter) {req in
+            let beers = try req.parameters.next(Int.self)
+            return "I'll take one so you can have \(beers - 1) bottles for yourself!"
+        }
+
     }
 }
